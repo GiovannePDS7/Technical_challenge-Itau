@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class TransacaoService {
-    public final List<TransacaoRequestDTO> listaTransacoes = new ArrayList<>();
+    private final List<TransacaoRequestDTO> listaTransacoes = new ArrayList<>();
 
     public void AdicionarTransacoes (TransacaoRequestDTO dto){
         log.info("Processamento de gravação de transações iniciado " + dto);

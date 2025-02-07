@@ -4,6 +4,7 @@ import com.GiovannePDS7.transactionManagement_api.Business.Services.TransacaoSer
 import com.GiovannePDS7.transactionManagement_api.Controller.Dtos.TransacaoRequestDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +18,29 @@ public class TransacaoController {
     private final TransacaoService transacaoService;
 
     @PostMapping
+    @Operation(description = "Endpoint responsável por adicionar transações")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "201", description = "Transação gravada com sucesso"),
+                    @ApiResponse(responseCode = "422", description = "Campos não atendem os requisitos da transação"),
+                    @ApiResponse(responseCode = "400", description = "Erro de requisição"),
+                    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+            }
+    )
     public ResponseEntity<Void> AdicionarTransacao(@RequestBody TransacaoRequestDTO dto){
         transacaoService.AdicionarTransacoes(dto);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @DeleteMapping
+    @Operation(description = "Endpoint responsável por deletar transações")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "Transação deletada com sucesso"),
+                    @ApiResponse(responseCode = "400", description = "Erro de requisição"),
+                    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+            }
+    )
     public ResponseEntity<Void> deletarTransacoes(){
         transacaoService.DeletarTransacoes();
         return ResponseEntity.ok().build();
