@@ -2,9 +2,10 @@ package com.GiovannePDS7.transactionManagement_api.Controller;
 
 import com.GiovannePDS7.transactionManagement_api.Business.Services.TransacaoService;
 import com.GiovannePDS7.transactionManagement_api.Controller.Dtos.TransacaoRequestDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
